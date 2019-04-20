@@ -28,7 +28,7 @@ Want to try pre-release development builds? Change the Docker image tag to `sour
 
 This release focusses on making it easier for admins to set up, configure and manage repositories at any scale.
 
-We’ve completely overhauled how repositories are mirrored from your code host so that it is easier to configure and more reliable. This benefits everyone, but especially organizations with thousands (or tens of thousands) of repositories.
+We’ve completely overhauled how repositories are mirrored from your code host so that it is easier to configure and more reliable. This overhaul benefits everyone, but especially organizations with thousands (or tens of thousands) of repositories.
 
 Sentry joins our list of developer tool integrations, and Swift developers get better symbols definition and better code navigation.
 
@@ -39,7 +39,7 @@ Read on for the details, and thanks to our customers and community for reporting
 <div style="padding-left: 2rem">
 
 [**🛠️ New! Config based repository selection**](#repo-config)<br />
-Repositories now chosen via add/exclude lists and query rules.
+Repositories are now chosen via add/exclude lists and query rules.
 
 **[🔌 New Sentry integration](#sentry) and [Bitbucket Server fixes](#bitbucket-fixes)**<br />
 Jump to Sentry from Sourcegraph and other integrations improvements.
@@ -72,7 +72,7 @@ Sourcegraph couldn’t be what it is without the community
 
 ## New repository configuration for GitHub, GitLab, and Bitbucket Server
 
-Prior to 3.3, integrating with a code host and selecting which repositories to use was a manual process:
+Before 3.3, integrating with a code host and selecting which repositories to use was a manual process:
 
 ![](/blog/old-repository-sync.png)
 
@@ -81,13 +81,13 @@ Sourcegraph would fetch and list all repositories accessible to the token which 
 
 ### Why manual enabling and disabling was problematic
 
-Once dealing with more than a few dozen repositories (most of our customers have many thousands), manually enabling each repository was time consuming, and often resulted in scripted GraphQL queries with selection logic.
+Once dealing with more than a few dozen repositories (most of our customers have many thousands), manually enabling each repository was time-consuming, and often resulted in scripted GraphQL queries with selection logic.
 
 From 3.3 onwards, selecting which repositories to search and mirror from GitHub, GitLab or Bitbucket Server is now part of the external service configuration for each code host.
 
 This configuration exclusively determines which repositories are used, eliminating the manual process of enabling, disabling and deleting individual repositories.
 
-Additionally, if a repository is deleted from the code host or if it is no longer accessible to the provided token, it will be deleted from Sourcegraph automatically. Renames of upstream repositories are also gracefully detected and handled.
+Additionally, if a repository is deleted from the code host or if it is no longer accessible to the provided token, it will be removed from Sourcegraph automatically. Renames of upstream repositories are also gracefully detected and handled.
 
 ![](/blog/new-repository-sync.png)
 
@@ -116,7 +116,7 @@ This has been implemented for [GitHub](https://docs.sourcegraph.com/admin/extern
   <p style="text-align: center"><a href="https://vimeo.com/331346276" target="_blank">View on Vimeo</a></p>
 </p>
 
-[Sentry](https://sentry.io/) is an [open-source](https://github.com/getsentry/sentry) error tracking tool which captures and sends error and exception notifications instantly. When browsing code on Sourcegraph or your code host, wouldn’t it be great if you could jump straight to the Sentry records page whenever you see error handling code instead of manually navigating around Sentry?
+[Sentry](https://sentry.io/) is an [open-source](https://github.com/getsentry/sentry) error tracking tool which captures and sends error and exception notifications instantly. When browsing the code on Sourcegraph or your code host, wouldn’t it be great if you could jump straight to the Sentry records page whenever you see error handling code instead of manually navigating around Sentry?
 
 The new [Sentry Sourcegraph extension](https://sourcegraph.com/extensions/sourcegraph/sourcegraph-sentry) does just that and runs anywhere that Sourcegraph does, such as code views on GitHub/GitLab with the [Sourcegraph browser extension](https://docs.sourcegraph.com/integration/browser_extension).
 
@@ -141,7 +141,7 @@ The refactoring and fixing work for integrations which started in 3.2 continues 
 - [**Browser extension fixes**](https://github.com/sourcegraph/sourcegraph/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+milestone%3A3.3+label%3Abrowser-extension+)<br />
   Better Sourcegraph connection error handling and prompts for when the extension must be manually activated, e.g. if using GitLab.com, as well as new [browser extension troubleshooting tips](https://docs.sourcegraph.com/integration/browser_extension#troubleshooting).
 
-As part of making the browser extension more robust, we're increasing end-to-end test coverage to catch code host related issues such as GitHub DOM changes faster. This reduces the time from issue logged, to patched and released, the goal being to catch any code host integration issues before our users do.
+As part of making the browser extension more robust, we're increasing end-to-end test coverage to catch code host related issues such as GitHub DOM changes faster. This change reduces the time from  the issue being logged, to it being patched and released. The goal being to catch any code host integration issues before our users do.
 
 <div id="code-intel"></div>
 
@@ -180,7 +180,7 @@ Terraform plans for Google Cloud and Azure are being scheduled for upcoming rele
 
 ## Making Sourcegraph a part of your dev tools stack
 
-Once a Sourecgraph instance is configured and ready for sharing, a site admin usually thinks:
+Once a Sourcegraph instance is configured and ready for sharing, a site admin usually thinks:
 
 - _“What is the best way to run a trial of Sourcegraph in my team/org?”_
 - _“How can I best communicate the value of code search to developers who’ve not used it before?”_
@@ -195,7 +195,7 @@ Give Sourcegraph the best chance of gaining traction by using our step-by-step g
 If a code search tool already exists such as Hound or OpenGrok, our code search comparison guide highlights the strengths and weaknesses of your current code search tool in comparison with Sourcegraph
 
 [**3. See how our customers use Sourcegraph**](https://docs.sourcegraph.com/user/tour)<br />
-See examples of how developers at companies such as Uber, Lyft, and Yelp depend on Sourcegraph everyday.
+See examples of how developers at companies such as Uber, Lyft, and Yelp depend on Sourcegraph every day.
 
 <div id="search"></div>
 
@@ -228,12 +228,12 @@ Our [docs site](https://docs.sourcegraph.com/) got a design refresh, as well as 
 - The new `gitlab.projects` setting in [GitLab external service config](https://docs.sourcegraph.com/admin/external_service/gitlab#configuration) allows you to select specific repositories to be synced.
 - The new `bitbucketserver.exclude` setting in [Bitbucket Server external service config](https://docs.sourcegraph.com/admin/external_service/bitbucketserver#configuration) allows you to exclude specific repositories matched by `bitbucketserver.repositoryQuery` and `bitbucketserver.repos` (so that they won't be synced). Upon upgrading, previously "disabled" repositories will be automatically migrated to this exclusion list.
 - The new `bitbucketserver.repos` setting in [Bitbucket Server external service config](https://docs.sourcegraph.com/admin/external_service/bitbucketserver#configuration) allows you to select specific repositories to be synced.
-- The new required `bitbucketserver.repositoryQuery` setting in [Bitbucket Server external service configuration](https://docs.sourcegraph.com/admin/external_service/bitbucketserver#configuration) allows you to use Bitbucket API repository search queries to select repos to be synced. Existing configurations will be migrate to have it set to `["?visibility=public", "?visibility=private"]` which is equivalent to the previous implicit behaviour that this setting supersedes.
+- The new required `bitbucketserver.repositoryQuery` setting in [Bitbucket Server external service configuration](https://docs.sourcegraph.com/admin/external_service/bitbucketserver#configuration) allows you to use Bitbucket API repository search queries to select repos to be synced. Existing configurations will be migrated to have it set to `["?visibility=public", "?visibility=private"]` which is equivalent to the previous implicit behaviour that this setting supersedes.
 - "Quick configure" buttons for common actions have been added to the config editor for all external services.
 - "Quick configure" buttons for common actions have been added to the management console.
 - Site-admins now receive an alert every day for the seven days before their license key expires.
 - The user menu (in global nav) now lists the user's organizations.
-- All users on an instance now see a non-dismissable alert when when there's no license key in use and the limit of free user accounts is exceeded.
+- All users on an instance now see a non-dismissable alert when there's no license key in use and the limit of free user accounts is exceeded.
 - All users will see a dismissible warning about limited search performance and accuracy on when using the sourcegraph/server Docker image with more than 100 repositories enabled.
 
 ### Changed
@@ -264,7 +264,7 @@ The [changelog for this and previous releases](https://github.com/sourcegraph/so
 
 ## Thank you
 
-Thank you to the many people who contributed to make Sourcegraph better since the last release!
+Thank you to the many people who contributed to making Sourcegraph better since the last release!
 
 - [@varaamo](https://github.com/varaamo)
 - [@saurabh-hirani](https://github.com/saurabh-hirani)
